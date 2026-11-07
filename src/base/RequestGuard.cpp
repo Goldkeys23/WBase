@@ -92,7 +92,8 @@ namespace
 void RequestGuard::setup(WebServer &server)
 {
   static const char *headerKeys[] = {"Origin"};
-  server.collectHeaders(headerKeys, 1);
+  // size_t count: with an int, ESP8266WebServer picks its variadic template overload instead
+  server.collectHeaders(headerKeys, (size_t)1);
 }
 
 void RequestGuard::setExtraHosts(const char *extraHosts)
